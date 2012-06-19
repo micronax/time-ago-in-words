@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Time-ago-in-words by salavert</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Time-ago-in-words</h1>
+        <p>Time ago in words Twig extension for Symfony2 framework</p>
+        <p class="view"><a href="https://github.com/salavert/time-ago-in-words">View the Project on GitHub <small>salavert/time-ago-in-words</small></a></p>
+        <ul>
+          <li><a href="https://github.com/salavert/time-ago-in-words/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/salavert/time-ago-in-words/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/salavert/time-ago-in-words">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Time ago in words Twig extension</h1>
+
+<p>This is a Twig extension for Symfony2 Framework where you can easily conrvert a datetime/timestamp to a distance of time in words</p>
+
+<p>By example</p>
+
+<pre><code>{{ user.lastLogin|time_ago_in_words }}
+</code></pre>
+
+<p>Outputs</p>
+
+<pre><code>3 days ago
+</code></pre>
+
+<h1>Installation for Symfony2</h1>
+
+<ol>
+<li><p>Copy Twig folder into your Bundle</p></li>
+<li><p>Activate twig extensions and set up our new extension at <code>/app/config/config.yml</code> (replace acme by your bundle name)</p></li>
+</ol><p>These lines must go below <code>services:</code></p>
+
+<pre><code>    acmebundle.twig.timeago_extension:
+        class: Acme\AcmeBundle\Twig\TimeAgoExtension
+        arguments: [@translator]
+        tags:
+        -  { name: twig.extension }
+
+    twig.extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+        - { name: twig.extension }
+</code></pre>
+
+<h1>Usage</h1>
+
+<p>To display distance of time in words between a date and current date:</p>
+
+<pre><code>{{ message.created|time_ago_in_words }}
+</code></pre>
+
+<p>To display distance of time between two custom dates you should use </p>
+
+<pre><code>{{ message.created|distance_of_time_in_words(message.updated) }}
+</code></pre>
+
+<h1>Tanslations</h1>
+
+<p>Add the following translations to your <code>\app\Resources\messages.locale.yml</code></p>
+
+<p>This is a translation to spanish:</p>
+
+<pre><code># Time ago in words - Twig Extension
+less than %seconds seconds ago: hace menos de %seconds segundos
+half a minute ago: hace medio minuto
+less than a minute ago: hace menos de un minuto
+1 minute ago: hace 1 minuto
+%minutes minutes ago: hace %minutes minutos
+about 1 hour ago: hace casi 1 hora
+about %hours hours ago: hace %hours horas
+1 day ago: hace 1 día
+%days days ago: hace %days días
+</code></pre>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/salavert">salavert</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
